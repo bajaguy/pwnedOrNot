@@ -13,9 +13,9 @@ G = '\033[32m' # green
 C = '\033[36m' # cyan
 W = '\033[0m'  # white
 
-version = '1.2.0'
+version = '1.2.5'
 
-useragent = {'User-Agent': 'pwnedornot'}
+useragent = {'User-Agent': 'pwnedOrNot'}
 start = ''
 
 def banner():
@@ -100,7 +100,11 @@ def check():
 		print(R + '[-]' + C + ' Error 503 : ' + W + 'Request Blocked by Cloudflare DDoS Protection')
 	elif sc == 403:
 		print('\n')
-		print(R + '[-]' + C + ' Error 403 : ' + W + 'Request Blocked by Cloudflare')
+		print(R + '[-]' + C + ' Error 403 : ' + W + 'Request Blocked by haveibeenpwned API')
+		print('\n-------------------------------------------------')
+		print('Email This Complete Response at troy@troyhunt.com')
+		print('-------------------------------------------------\n')
+		print(rqst.text)
 	else:
 		print('\n')
 		print(R + '[-]' + C + ' An Unknown Error Occurred')
@@ -165,6 +169,8 @@ def dump():
 					if sc == 200:
 						dumplist.append(url)
 						print(G + '[+]' + C + ' Dumps Found : ' + W + str(len(dumplist)), end='\r')
+					if len(dumplist) == 0:
+							print(R + '[-]' + C + ' Dumps are not Accessible...' + W)
 				except requests.exceptions.ConnectionError:
 					pass
 			elif (item['Source']) == 'AdHocUrl':
@@ -175,6 +181,8 @@ def dump():
 					if sc == 200:
 						dumplist.append(url)
 						print(G + '[+]' + C + ' Dumps Found : ' + W + str(len(dumplist)), end='\r')
+					if len(dumplist) == 0:
+							print(R + '[-]' + C + ' Dumps are not Accessible...' + W)
 				except requests.exceptions.ConnectionError:
 					pass
 
